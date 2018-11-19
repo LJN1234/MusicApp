@@ -2,12 +2,13 @@
 <template>
 	<div id="mine">
 	    <router-view></router-view>
+	    <Mine1></Mine1>
 	</div>
 </template>
 
 
 <script>
-	
+import Mine1 from './Mine1'
 	export default{
 		name:'Mine',
 		data(){
@@ -15,14 +16,14 @@
             	title:'我的界面'
             }
 		},
-		components:{}
+		components:{Mine1}
     }
 
 </script>
 <style lang="less" scoped>
 @import '../../../styles/main.less';	
 #mine{
-	background: darkblue;
+	/*background: #fff;*/
 }
 
 </style>

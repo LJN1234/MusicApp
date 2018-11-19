@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div class="login">
 		{{disc}}
 	</div>
 </template>
@@ -8,6 +8,7 @@
 	export default{
 	name:'BottomBtn2',
 	components:{},
+//	props:'',
 	data(){
 		return {
 			disc:"登录"
@@ -17,5 +18,10 @@
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+@import '../../../styles/main.less';
+.login{
+	background:red;
+	.mg(200,0,0,0);
+}
 </style>

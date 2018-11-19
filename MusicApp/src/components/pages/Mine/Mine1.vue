@@ -26,6 +26,7 @@ export default{
 @import '../../../styles/main.less';
 
 #mine1{
-	background: lightblue;
+	.mg(100,0,0,0);
+	/*background: #fff;*/
 }
 </style>
