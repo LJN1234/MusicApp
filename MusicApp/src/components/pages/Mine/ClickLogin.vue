@@ -35,7 +35,7 @@
    	 	/*border-radius: 50%;*/
    	 	/*border:1px solid #ccc;*/
    	 	.mg(15,10,0,10);
-   	 	background-image: url(../../../../static/images/ico.png);
+   	 	background-image: url(/static/images/ico.png);
    	 	background-position: -191px -148px;
    	 }
 }

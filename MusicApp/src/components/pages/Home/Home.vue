@@ -2,20 +2,20 @@
 	
 	<div id="home">
 		<Banner></Banner>
-		<Popular></Popular>
-		<Recommend></Recommend>
+		<Song></Song>
+		<MV></MV>
 	</div>
 	
 </template>
 
 <script>
 import Banner from '../../commons/Banner'//引入组件
-import Popular from './Popular'//引入组件
-import Recommend from './Recommend'//引入组件
+import MV from './MV'//引入组件
+import Song from './Song'//引入组件
 
 export default{
 	name:'Home',
-	components:{Banner,Popular,Recommend}
+	components:{Banner,MV,Song}
 }
 </script>
 

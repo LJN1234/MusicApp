@@ -31,13 +31,47 @@
 
 <script>
 	export default{
-	name:'BottomBtn2',
+	name:'LeaderList',
 	components:{},
 	data(){
 		return {
-			disc:["榜单列表"],
-			topList:[]
-		
+//			disc:["榜单列表"],
+//			topList:[]
+			topMusic: [],
+	        keyValue1: [
+	          {
+	            'key': 0,
+	            'val': '新歌榜',
+	            'url': 'http://p3.music.126.net/N2HO5xfYEqyQ8q6oxCw8IQ==/18713687906568048.jpg?param=150y150',
+	            'music': [],
+	            'upTime': '每天更新',
+	            'loding': true
+	          },
+	          {
+	            'key': 1,
+	            'val': '热歌榜',
+	            'url': 'http://p3.music.126.net/GhhuF6Ep5Tq9IEvLsyCN7w==/18708190348409091.jpg?param=150y150',
+	            'music': [],
+	            'upTime': '每周四更新',
+	            'loding': true
+	          },
+	          {
+	            'key': 2,
+	            'val': '原创榜',
+	            'url': 'http://p4.music.126.net/sBzD11nforcuh1jdLSgX7g==/18740076185638788.jpg?param=150y150',
+	            'music': [],
+	            'upTime': '每周四更新',
+	            'loding': true
+	          },
+	          {
+	            'key': 3,
+	            'val': '飙升榜',
+	            'url': 'http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=150y150',
+	            'music': [],
+	            'upTime': '每天更新',
+	            'loding': true
+	          }
+	        ]
 		}
 
 	},///v8/fcg-bin/fcg_myqq_toplist.fcg?_=1542417081180

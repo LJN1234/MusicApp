@@ -4,7 +4,7 @@
     <Nav></Nav>
     <router-view></router-view>
     <Footer></Footer>
-    <!--<audio src=""></audio>-->
+    <audio src=""></audio>
   
   </div>
 </template>

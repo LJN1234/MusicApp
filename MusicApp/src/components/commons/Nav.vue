@@ -2,7 +2,7 @@
 	<div id="nav">
 		<ul>
 			<li v-for="(item,index) in titles" :key="index" @click="chageTitle(item.name)" :class="title===item.name?'hl':''">
-				<router-link :to="{path:item.path}" >{{item.name}}</router-link>
+				<router-link :to="{path:item.path}" >{{item.title}}</router-link>
 			</li>
 		</ul>
 	</div>
@@ -13,11 +13,10 @@
 		name:'Nav',
 		data(){
 			return {
-				titles:[{name:'首页',path:'/home'},
-						{name:'分类',path:'/Type'},
-						{name:'歌手',path:'/Singer'},
-						{name:'榜单',path:'/Leaderboard'},
-						{name:'我的',path:'/Mine'}],
+				titles:[{title:'首页',path:'/home',name:'Home'},
+						{title:'歌手',path:'/singer',name:'Singer'},
+						{title:'榜单',path:'/leaderboard',name:'Leaderboard'},
+						{title:'搜索',path:'/search',name:'Search'}],
 				title:'首页',
 			}
 		},
@@ -43,7 +42,7 @@
  		display: flex;
 		justify-content: space-between;
 		li{
-			width:20%;
+			width:25%;
             .fs(17);
             .h(46);
             .lh(46);

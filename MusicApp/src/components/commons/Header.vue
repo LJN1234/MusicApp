@@ -1,22 +1,15 @@
 <template>
 	<div id="header">
 	   <div class='con'>
-			<div class='left' @click='toshow'>
+			<div class='left' @click="isShow">
 				<div class='nav-icon'>
 					<i class="fa fa-bars"></i>
 				</div>
 				<div class='title'>某某音乐</div>
 			</div>
-			<div class='right'>
-				<div class='search-icon'>
-	              <i class="fa fa-search"></i>
-				</div>
-				<div class='user-icon'>
-					<i class="fa fa-user-o"></i>
-				</div>
-			</div>
 		</div>
-		<!--<Aside :show='isShow' @close='closeSlider'></Aside>-->
+		<!--<Aside :show="show" @close="closeAside"></Aside>-->
+		<Aside></Aside>
 	</div>
 </template>
 
@@ -25,18 +18,21 @@ import  Aside from './Aside.vue'
 	
 	export default{
 		name:"Header",
-		component:{Aside},
+		components:{Aside},
 		data(){
 			return {
-				isShow:true
+				show:false
 			}
 		},
 		methods:{
-			toshow(){
-				this.isShow=!this.isShow
+			isShow(){
+//				this.show=!this.show;
+				let show = !this.$store.state.isShow;
+				this.$store.commit('chageShow',show)
+				
 			},
-			closeSlider(){
-				this.isShow=false
+			closeAside(){
+				this.show=false;
 			}
 		}
 	}
@@ -75,14 +71,6 @@ import  Aside from './Aside.vue'
 	    		}
 	    		.title{
 	    			width:auto;
-					.h(54);
-					.lh(54);
-					text-align:center;
-	    		}
-	    	}
-	    	.right{
-	    		.search-icon,.user-icon{
-	    			.w(54);
 					.h(54);
 					.lh(54);
 					text-align:center;

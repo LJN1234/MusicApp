@@ -13,8 +13,9 @@
 	            <li class="play_btn fr">
 	                <button  class="fa fa-step-backward"></button>
 	                <button class="fa fa-play"></button>
-	                <button class="fa fa-pause"></button>
-	                <button class="fa fa-step-forward" @click="Show"></button>
+	                <!--<button class="fa fa-pause"></button>-->
+	                <button class="fa fa-step-forward"></button>
+	                <button class="fa fa-list" @click="Show"></button>
 	            </li>
 	        </ul>
 	    </div>
@@ -79,15 +80,21 @@ import PlayList from './PlayList'//引入组件
 					.w(160);
 					.h(30);
 					.lh(25);
-					.fs(18);
+					.fs(16);
+				}
+				.singerName{
+					.fs(14)
 				}
 			}
 			.play_btn{
 				.w(120);
 				.h(40);
-				.fs(25);
-				 background:#fff;
-				/*color:red;*/
+				.fs(20);
+				button{
+					background:#fff;
+					color:#333;
+					.mg(0,5,0,5);
+				}
 			}
 		}
 	} 
