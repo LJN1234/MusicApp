@@ -1,18 +1,24 @@
 <template>
   <div id="search">
+		<Header></Header>
+  	<Nav></Nav>
     <div class="inputs">
       <input id="inp" class="text" v-model="query"  @keyup.enter="submit()"  autofocus="autofocus"  placeholder="搜索音乐·歌手·歌单·MV">
       <input type="button" class="sousuo" value="GO" @click="submit()" />
     </div>
     <div class="hot-search">
       <h3>热门搜索</h3>
-      <button v-for="item in hotSearch" @click="submit(item)">{{item}}</button>
+      <button v-for="(item,index) in hotSearch" :key="index" @click="submit(item)">{{item}}</button>
     </div>
   </div>
 </template>
 
 <script>
+import Header from '../../commons/Header'//引入组件
+import Nav from '../../commons/Nav'//引入组件
   export default {
+		name:'Search',
+		components:{Header,Nav},
     data () {
       return {
         query: '',

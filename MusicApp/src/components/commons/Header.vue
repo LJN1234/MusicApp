@@ -50,7 +50,7 @@ import  Aside from './Aside.vue'
 		.r(0);
 		.l(0);
 	    z-index: 1000;
-	    background: green;
+	    background: rgb(13, 148, 125);
 	    .con{
 	    	display: flex;
 	    	justify-content: space-between;

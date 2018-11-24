@@ -6,10 +6,10 @@
 	      <input type="button" class="sousuo" value="GO" @click="submit()" />
 	    </div>
 	    <div class="result-type">
-	      <router-link :to="{path: '/resultSingle', query: { val: val }}" replace>单曲</router-link>
-	      <router-link :to="{path: '/resultSinger', query: { val: val }}" replace>歌手</router-link>
-	      <router-link :to="{path: '/resultSheet', query: { val: val }}" replace>歌单</router-link>
-	      <router-link :to="{path: '/resultMv', query: { val: val }}" replace>MV</router-link>
+	      <router-link :to="{path: '/searchResult/resultSingle', query: { val: val }}" replace>单曲</router-link>
+	      <router-link :to="{path: '/searchResult/resultSinger', query: { val: val }}" replace>歌手</router-link>
+	      <router-link :to="{path: '/searchResult/resultSheet', query: { val: val }}" replace>歌单</router-link>
+	      <router-link :to="{path: '/searchResult/resultMv', query: { val: val }}" replace>MV</router-link>
 	    </div>
     </div>
     <router-view></router-view>
@@ -30,12 +30,12 @@ import ResultSingle from './ResultSingle'
     methods: {
       submit () {
 //      console.log('submit')
-        this.$router.replace({path: '/resultSingle', query: { val: this.val }})
+        this.$router.replace({path: '/searchResult/resultSingle', query: { val: this.val }})
       }
     },
     mounted () {
       this.val = this.$route.query.val
-      this.$router.push({path: '/resultSingle', query: { val: this.$route.query.val }})
+      this.$router.push({path: '/searchResult/resultSingle', query: { val: this.$route.query.val }})
     }
   }
 </script>

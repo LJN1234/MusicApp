@@ -1,5 +1,7 @@
 <template>
 	<div id="singer">
+		<Header></Header>
+   		<Nav></Nav>
 		<HotSinger></HotSinger>
 
 	</div>
@@ -7,13 +9,14 @@
 
 <script>
 import HotSinger from './HotSinger'//引入组件
-//import SingerType from './SingerType'//引入组件
+import Header from '../../commons/Header'//引入组件
+import Nav from '../../commons/Nav'//引入组件
 
 
 
 export default{
 	name:'Singer',
-	components:{HotSinger},
+	components:{Header,Nav,HotSinger},
 	data(){
 		return {
 			

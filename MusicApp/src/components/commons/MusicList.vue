@@ -1,8 +1,12 @@
 <template>
-	<div id="resultSingle">
+	<div id="musicList">
 		<div class="con-list">
+			<div class="playAll">
+				<i class="fa fa-play-circle-o"></i>
+				<span>播放全部</span>
+			</div>
 			<ul>
-				<li v-for="(item,index) in singList" :key="index">
+				<li v-for="(item,index) in tracks" :key="index">
 					<div class="add fl">
 						<span>{{index+1}}</span>
 					</div>
@@ -23,49 +27,29 @@
 
 <script>
 	export default {
-		name: 'resultSingle',
-		data() {
-			return {
-				singList: []
+		name: 'MusicList',
+		props: {
+			tracks: {
+				type: Array
 			}
 		},
-		// 计算当前搜索的值
-	    computed: {
-		    query () {
-		        return this.$route.query.val
-		    }
+		data() {
+			return {
+				
+			}
 		},
-	    // query变化重新搜索
-	    watch: {
-	      query () {
-	        this.singList = []
-	        this.fetchData()
-	      }
-	    },
-	    methods: {
-	      getResult () {
-	        const offset = this.singList.length
-	        console.log(this.$route.query.val)
-	        this.$axios.get(`/weapi/search?keywords=${this.$route.query.val}&type=1&limit=15&offset=${offset}`)
-		      .then((res) => {
-//		      	console.log(res.result.songs)
-		        // this.songs = res.result.songs
-		        for (let song of res.result.songs) {
-		          this.singList.push(song)
-		        }
-		      })
-	      }
-	    },
+		methods:{
+
+		},
 	    mounted () {
-	      this.getResult()
+	     
 	    }
 	}
 </script>
 
 <style lang="less" scoped>
-	@import '../../../styles/main.less';
-	#resultSingle {
-		.mg(200,0,0,0);
+	@import '../../styles/main.less';
+	#musicList {
 		.con-list {
 			.title{
 				display:flex;
@@ -79,6 +63,18 @@
 				span{
 					.fs(14);
 					.mg(14, 0, 18, 0);
+				}
+			}
+			.playAll{
+				.w(355);
+				.h(60);
+				.mg(0,10,0,10);
+				border-bottom: 1px dashed #c0c0c0;
+				i{
+					.fs(20);
+				}
+				span{
+					.fs(12);
 				}
 			}
 			ul {
@@ -114,8 +110,8 @@
 						flex-direction:column;
 						.name,.singer {
 							.fs(16);
-							.h(30);
-							.lh(30);
+							.h(20);
+							.lh(20);
 							text-overflow: ellipsis;
 							white-space: nowrap;
 							overflow: hidden;

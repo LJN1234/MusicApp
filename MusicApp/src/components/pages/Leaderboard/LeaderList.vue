@@ -1,7 +1,9 @@
 <template>
   <div id="leaderList">
+    <Header></Header>
+   	<Nav></Nav>
     <section>
-      <div v-for="(item, index) of keyValue1" class="listCon">
+      <div v-for="(item,index) of keyValue1" class="listCon" @click="goDetails(item.key)" :key="index">
         <div class="list-img fl">
           <img :src="item.url">
           <span class="uptime">
@@ -9,11 +11,10 @@
           </span>
         </div>
         <div class="list-song fl">
-          <mu-circular-progress :size="30" color="red"/>
-          <div v-for="(it, inde) of keyValue1[index].music">
+          <div v-for="(it, inde) of keyValue1[index].music" :key="inde">
             <p>
               {{inde + 1}}. {{it.name}}-
-              <span v-for="(i, ind) of it.artists">{{i.name}}<span v-if="ind !== (it.artists.length - 1)">/</span></span>
+              <span v-for="(i, ind) of it.artists" :key="ind">{{i.name}}<span v-if="ind !== (it.artists.length - 1)">/</span></span>
             </p>
           </div>
         </div>
@@ -23,8 +24,11 @@
 </template>
 
 <script>
+import Header from '../../commons/Header'//引入组件
+import Nav from '../../commons/Nav'//引入组件
   export default {
-  	name:"LeaderList",
+    name:"LeaderList",
+  	components:{Header,Nav},
     data () {
       return {
         topMusic: [],
@@ -35,7 +39,6 @@
             'url': 'http://p3.music.126.net/N2HO5xfYEqyQ8q6oxCw8IQ==/18713687906568048.jpg?param=150y150',
             'music': [],
             'upTime': '每天更新',
-            'loding': true
           },
           {
             'key': 1,
@@ -43,7 +46,6 @@
             'url': 'http://p3.music.126.net/GhhuF6Ep5Tq9IEvLsyCN7w==/18708190348409091.jpg?param=150y150',
             'music': [],
             'upTime': '每周四更新',
-            'loding': true
           },
           {
             'key': 2,
@@ -51,7 +53,6 @@
             'url': 'http://p4.music.126.net/sBzD11nforcuh1jdLSgX7g==/18740076185638788.jpg?param=150y150',
             'music': [],
             'upTime': '每周四更新',
-            'loding': true
           },
           {
             'key': 3,
@@ -59,12 +60,11 @@
             'url': 'http://p3.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=150y150',
             'music': [],
             'upTime': '每天更新',
-            'loding': true
           }
         ]
       }
     },
-    mounted () {
+    created () {
       this.ajax(0)
       this.ajax(1)
       this.ajax(2)
@@ -73,12 +73,16 @@
     methods: {
       ajax (ind) {
         this.$axios.get(`/weapi/top/list?idx=${ind}`)
-	    .then((res) => {
-	    	console.log(res)
+	    	.then((res) => {
+	    		// console.log(res)
           let [{name: name1, artists: ar1}, {name: name2, artists: ar2}, {name: name3, artists: ar3}] = res.result.tracks
           this.keyValue1[ind].music = [{name: name1, artists: ar1}, {name: name2, artists: ar2}, {name: name3, artists: ar3}]
-          console.log(this.keyValue1[ind])
+          // console.log(this.keyValue1[ind])
         })
+      },
+      goDetails(ind){
+      	// console.log(`/listContent/${ind}`)
+        this.$router.push({path: `/listContent/${ind}`})
       }
     }
   }
@@ -88,6 +92,7 @@
 @import '../../../styles/main.less';	
 
 #leaderList {
+  .pd(105,0,80,0);
     background-color: #f1f6f4;
 	.listCon {
 		.w(375);
@@ -111,12 +116,18 @@
 	    .list-song {
 	    	.w(245);
 		    .h(120);
-	        .pd(30,0,0,10);
+	      .pd(18,0,0,10);
 		    border-bottom: 1px solid #dce1df;
 		    p{
+		    	.w(245);
+		    	.h(25);
+		    	.lh(25);
 		    	.fs(14);
-		        color: #6d6d6d;
-		        .lh(20);
+		      color: #6d6d6d;
+		      overflow:hidden;
+		      text-overflow:ellipsis;
+		      white-space:nowrap;
+		         
 		    }
 	    }
 	}

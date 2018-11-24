@@ -57,7 +57,7 @@
 	@import '../../../styles/main.less';
 	
 #resultMv{
-  	.mg(200,0,0,0);
+  	.mg(200,0,80,0);
     .mvList {
     	.w(355);
     	.h(250);

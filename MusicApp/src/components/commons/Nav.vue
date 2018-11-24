@@ -15,7 +15,7 @@
 			return {
 				titles:[{title:'首页',path:'/home',name:'Home'},
 						{title:'歌手',path:'/singer',name:'Singer'},
-						{title:'榜单',path:'/leaderboard',name:'Leaderboard'},
+						{title:'榜单',path:'/leaderList',name:'ListContent'},
 						{title:'搜索',path:'/search',name:'Search'}],
 				title:'首页',
 			}
