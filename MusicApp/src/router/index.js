@@ -3,14 +3,8 @@ import Router from 'vue-router' //vue router
 
 
 import Home from '../components/pages/Home/Home' //首页
-<<<<<<< HEAD
-// import Login from '../components/pages/Mine/Login' //登录
-// import Reg from '../components/pages/Mine/Reg' //注册
-=======
-import Leaderboard from '../components/pages/Leaderboard/Leaderboard' //榜单
 import Login from '../components/pages/Login/Login' //登录
 import Reg from '../components/pages/Reg/Reg' //注册
->>>>>>> 6267ebc1807c6819d9df7235fe9d746a03b5e495
 import Singer from '../components/pages/Singer/Singer' //歌手
 import Search from '../components/pages/Search/Search' //搜索
 import searchResult from '../components/pages/Search/searchResult'
@@ -39,6 +33,11 @@ export default new Router({
       path: '/listContent/:id',
       name: 'ListContent',
       component: ListContent
+    },
+    {
+      path: '/musicList',
+      name: 'MusicList',
+      component: MusicList
     },
     {
       path: '/leaderList',
