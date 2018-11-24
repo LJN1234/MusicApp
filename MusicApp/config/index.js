@@ -16,20 +16,20 @@ module.exports = {
     		changeOrigin:true,    //是否允许跨域
     		pathRewrite:{'^/test':'/'}   //重写请求地址
     	},
-    	'/hot':{
+    	'/api':{
     		target:'http://music.163.com',   //目标地址
     		changeOrigin:true,    //是否允许跨域
-    		pathRewrite:{'^/hot':'/'}   //重写请求地址
+    		pathRewrite:{'^/api':'/'}   //重写请求地址
     	},
-    	'/custom':{
+    	'/weapi':{
     		target:'http://localhost:9009',   //目标地址
     		changeOrigin:true,    //是否允许跨域
-      		pathRewrite:{'^/custom':'/'}   //重写请求地址
+      		pathRewrite:{'^/weapi':'/'}   //重写请求地址
     	}
     },
 
     // Various Dev Server settings
-    host: '10.3.139.112', // can be overwritten by process.env.HOST
+    host: '10.3.139.83', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,

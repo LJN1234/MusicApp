@@ -3,6 +3,7 @@
 	<div id="home">
 		<Banner></Banner>
 		<Song></Song>
+		<Sole></Sole>
 		<MV></MV>
 	</div>
 	
@@ -10,22 +11,20 @@
 
 <script>
 import Banner from '../../commons/Banner'//引入组件
-import MV from './MV'//引入组件
+import Sole from './Sole'//引入组件
 import Song from './Song'//引入组件
+import MV from './MV'//引入组件
 
 export default{
 	name:'Home',
-	components:{Banner,MV,Song}
+	components:{Banner,MV,Song,Sole}
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+	@import '../../../styles/main.less';
+	
 	#home{
-		width: 375px;
-		height: 300px;
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
+		.pd(100,0,80,0);
 	}
 </style>

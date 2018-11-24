@@ -23,6 +23,6 @@ export default{
 @import '../../../styles/main.less';
 
 #leaderList{
-	/*background: blue;*/
+	.mg(100,0,80,0)
 }
 </style>

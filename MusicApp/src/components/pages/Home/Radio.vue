@@ -1,5 +1,5 @@
 <template>
-	<div class="song">
+	<div class="main">
 		<div class="con-list">
 			<div class="title">
 				<h2>热门歌单</h2>
@@ -30,11 +30,11 @@
 		},
 		methods:{
 			getList(){
-				this.$axios.post('/api/api/personalized/playlist')
+//				https://m.juooo.com/index/hotsShowList
+				this.$axios.post('/hot/api/personalized/playlist')
 				.then((res)=>{
-//					console.log(res)
 					this.singList=res.result
-					
+					console.log(this.singList)
 				})
 				.catch((err)=>{
 					console.log(err)
@@ -49,8 +49,10 @@
 
 <style lang="less" scoped>
 	@import '../../../styles/main.less';
-	.song {
+	.main {
 		.w(375);
+		.pd(5, 10, 5, 10);
+		box-sizing:border-box;
 		.con-list {
 			.title{
 				display:flex;
@@ -63,15 +65,15 @@
 				}
 			}
 			ul {
-				.w(375);
 				display: flex;
 				justify-content: space-between;
 				flex-wrap: wrap;
 				li {
-					width: 48%;
+					flex: 1;
+					width: 30%;
 					.Img {
-						.w(177);
-						.h(177);
+						.w(107);
+						.h(107);
 						position: relative;
 						img {
 							position: absolute;
@@ -82,7 +84,7 @@
 						}
 					}
 					.Info {
-						.w(177);
+						.w(107);
 						.h(50);
 						p{
 							.fs(14);

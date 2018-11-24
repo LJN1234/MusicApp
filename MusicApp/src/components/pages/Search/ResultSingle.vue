@@ -1,10 +1,6 @@
 <template>
-	<div class="main">
+	<div id="resultSingle">
 		<div class="con-list">
-			<div class="title">
-				<h2>热歌推荐</h2>
-				<span>更多</span>
-			</div>
 			<ul>
 				<li v-for="(item,index) in singList" :key="index">
 					<div class="add fl">
@@ -12,48 +8,60 @@
 					</div>
 					<div class="Info fl">
 						<p class="name">{{item.name}}</p>
-						<p class="singer">{{item.song.artists[0].name}}</p>
+						<p class="singer">{{item.artists[0].name}}</p>
 					</div>
 				</li>
 			</ul>
+			<button>更多</button>
 		</div>
 	</div>
 </template>
 
 <script>
 	export default {
-		name: 'HotSong',
+		name: 'resultSingle',
 		data() {
 			return {
-				singList: [],
+				singList: []
 			}
 		},
-		methods:{
-			getList(){
-//				https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?
-				this.$axios.post('/hot/api/personalized/newsong')
-				.then((res)=>{
-					console.log(res.result)
-					this.singList=res.result
-					console.log(res.result[0].song.artists[0].name)
-
-				})
-				.catch((err)=>{
-					console.log(err)
-				})
-			}
+		// 计算当前搜索的值
+	    computed: {
+		    query () {
+		        return this.$route.query.val
+		    }
 		},
-		created() {
-			this.getList()
-		}
+	    // query变化重新搜索
+	    watch: {
+	      query () {
+	        this.singList = []
+	        this.fetchData()
+	      }
+	    },
+	    methods: {
+	      getResult () {
+	        const offset = this.singList.length
+	        console.log(this.$route.query.val)
+	        this.$axios.get(`/weapi/search?keywords=${this.$route.query.val}&type=1&limit=15&offset=${offset}`)
+		      .then((res) => {
+//		      	console.log(res.result.songs)
+		        // this.songs = res.result.songs
+		        for (let song of res.result.songs) {
+		          this.singList.push(song)
+		        }
+		      })
+	      }
+	    },
+	    mounted () {
+	      this.getResult()
+	    }
 	}
 </script>
 
 <style lang="less" scoped>
 	@import '../../../styles/main.less';
-	.main {
-		box-sizing:border-box;
-		.pd(0, 10, 80, 10);
+	#resultSingle {
+		.mg(200,0,0,0);
 		.con-list {
 			.title{
 				display:flex;
@@ -71,8 +79,9 @@
 			}
 			ul {
 				li {
-					.w(375);
+					.w(355);
 					.h(65);
+					.mg(0,10,0,10);
 					border-bottom: 1px dashed #c0c0c0;
 					.add{
 						position:relative;

@@ -57,7 +57,6 @@ import Vue from 'vue';
 	@import '../../styles/main.less';
 	@import '../../../node_modules/swiper/dist/css/swiper.css';
 	#banner{
-		.pd(92,0,0,0);
 		box-sizing:border-box;
 		.swiper-container {
 			.w(375);

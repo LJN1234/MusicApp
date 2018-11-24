@@ -1,12 +1,12 @@
 <template>
-	<div class="main">
+	<div class="mv">
 		<div class="con-list">
 			<div class="title">
 				<h2>MV推荐</h2>
-				<span>更多</span>
+				<!--<span>更多</span>-->
 			</div>
 			<ul>
-				<li v-for="(item,index) in mv" :key="index">
+				<li v-for="(item,index) in mvList" :key="index">
 					<div class="img">
 						<img :src="item.cover"/>
 					</div>
@@ -16,24 +16,31 @@
 					</div>
 				</li>
 			</ul>
+			<!--<button @click="getList(limit)">点击加载更多资源</button>-->
 		</div>
 	</div>
 </template>
 
 <script>
 	export default {
-		name: 'Home_main',
+		name: 'Mv',
 		data() {
 			return {
-				mv: [],
+				mvList: [],
 			}
 		},
 		methods:{
-			getList(){
-				this.$axios.get('/custom/mv/first?limit=12&offset=12')
+			getList(limit){
+				const offset = this.mvList.length
+				this.limit+=5
+				
+				this.$axios.get(`/weapi/mv/first?limit=${limit}&offset=${offset}`)
 				.then((res)=>{
-					console.log(res.data)
-					this.mv=res.data
+					console.log(res)
+//					this.mv=res.data
+					for (let mv of res.data) {
+			            this.mvList.push(mv)
+			          }
 				})
 				.catch((err)=>{
 					console.log(err)
@@ -41,18 +48,16 @@
 			}
 		},
 		created() {
-			this.getList()
+			this.getList(5)
 		}
 	}
 </script>
 
 <style lang="less" scoped>
 	@import '../../../styles/main.less';
-	.main {
-		.pd(0, 10, 100, 10);
-		position:relative;
+	.mv {
+		width:100%;
 		.con-list {
-			.pd(0, 10, 100, 10);
 			.title{
 				.w(355);
 				.h(50);
@@ -70,28 +75,10 @@
 					.fs(14);	
 				}
 			}
-			.Info{
-				.mg(5, 20, 0, 20);
-				h2{
-					.fs(16);
-					font-weight: 400;
-					float:left;
-					text-align: left;
-				}
-				span{
-					.fs(14);
-					float:right;
-					color:#999;
-				}	
-			}
 			ul {
-				position:absolute;
-				.l(0);
-				.t(60);
 				li {
 					.w(375);
 					.h(250);
-					border-bottom: 1px dashed #c0c0c0;
 					.img{
 						.w(375);
 						.h(200);
@@ -99,6 +86,20 @@
 							.w(375);
 							.h(200);
 						}
+					}
+					.Info{
+						.mg(5, 20, 0, 20);
+						h2{
+							.fs(16);
+							font-weight: 400;
+							float:left;
+							text-align: left;
+						}
+						span{
+							.fs(14);
+							float:right;
+							color:#999;
+						}	
 					}
 				}
 			}

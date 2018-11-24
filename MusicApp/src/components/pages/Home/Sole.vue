@@ -1,18 +1,16 @@
 <template>
-	<div class="main">
+	<div class="sole">
 		<div class="con-list">
 			<div class="title">
-				<h2>MV推荐</h2>
-				<span>更多</span>
+				<h2>独家放送</h2>
 			</div>
 			<ul>
-				<li v-for="(item,index) in mv" :key="index">
+				<li v-for="(item,index) in lists" :key="index">
 					<div class="img">
-						<img :src="item.cover"/>
+						<img :src="item.picUrl"/>
 					</div>
 					<div class="Info">
 						<h2>{{item.name}}</h2>
-						<span>{{item.artistName}}</span>
 					</div>
 				</li>
 			</ul>
@@ -22,18 +20,18 @@
 
 <script>
 	export default {
-		name: 'Home_main',
+		name: 'Sole',
 		data() {
 			return {
-				mv: [],
+				lists: [],
 			}
 		},
 		methods:{
 			getList(){
-				this.$axios.get('/custom/mv/first?limit=12&offset=12')
+				this.$axios.get('/api/api/personalized/privatecontent')
 				.then((res)=>{
-					console.log(res.data)
-					this.mv=res.data
+					console.log(res)
+					this.lists=res.result
 				})
 				.catch((err)=>{
 					console.log(err)
@@ -48,47 +46,27 @@
 
 <style lang="less" scoped>
 	@import '../../../styles/main.less';
-	.main {
-		box-sizing:border-box;
-		.pd(0, 10, 80, 10);
-		position:relative;
+	.sole {
+		.w(375);
 		.con-list {
-			h2 {
-				float:left;
-				.fs(20);
-				font-weight: 700;
-				text-align: left;
-			}
-			span{
-				float:right;
-				.fs(14);	
-			}
-			.title,.Info{
-				.w(355);
+			.title{
+				.w(375);
 				.h(50);
 				.lh(50);
 				.mg(14, 0, 18, 0);
 				display:flex;
 				justify-content:space-between;
-			}
-			.Info{
-				h2{
-					.fs(16);
-					font-weight: 400;
+				h2 {
+					float:left;
+					.fs(20);
+					font-weight: 700;
+					text-align: left;
 				}
-				span{
-					.fs(12);
-					color:#ccc;
-				}	
 			}
 			ul {
-				position:absolute;
-				.l(0);
-				.t(60);
 				li {
 					.w(375);
 					.h(250);
-					border-bottom: 1px dashed #c0c0c0;
 					.img{
 						.w(375);
 						.h(200);
@@ -96,6 +74,15 @@
 							.w(375);
 							.h(200);
 						}
+					}
+					.Info{
+						.mg(5, 5, 0, 5);
+						h2{
+							.fs(16);
+							font-weight: 400;
+							float:left;
+							text-align: left;
+						}	
 					}
 				}
 			}

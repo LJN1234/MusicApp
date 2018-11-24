@@ -56,12 +56,9 @@
 <style lang="less" scoped>
 @import '../../../styles/main.less';
 .Singer{
-	/*background:blue;*/
-	/*.mg(100,0,0,0);*/
 	.navtype{
 		.fs(16);
 		.h(60);
-		.mg(100,0,0,0);
 		ul{
 			display: flex;
 			justify-content: space-between;
