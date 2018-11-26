@@ -9,6 +9,9 @@ import Axios from 'axios'
 // 引入 vuex 
 import  store from './store/index.js'
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
 //post请求信息
 Axios.interceptors.request.use(function (config) {
 	console.log(config)

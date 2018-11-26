@@ -32,8 +32,7 @@
 		methods:{
 			getList(limit){
 				const offset = this.mvList.length
-				this.limit+=5
-				
+				this.limit+=5	
 				this.$axios.get(`/weapi/mv/first?limit=${limit}&offset=${offset}`)
 				.then((res)=>{
 					console.log(res)

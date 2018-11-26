@@ -22,14 +22,14 @@ module.exports = {
     		pathRewrite:{'^/api':'/'}   //重写请求地址
     	},
     	'/weapi':{
-    		target:'http://localhost:9009',   //目标地址
+    		target:'http://127.0.0.1:9009',   //目标地址
     		changeOrigin:true,    //是否允许跨域
       		pathRewrite:{'^/weapi':'/'}   //重写请求地址
     	}
     },
 
     // Various Dev Server settings
-    host: '10.3.139.83', // can be overwritten by process.env.HOST
+    host: '10.3.139.1', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,

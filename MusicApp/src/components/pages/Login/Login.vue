@@ -4,7 +4,6 @@
 			<div class="dl">
 				<i> 登录</i>
 			</div>
-<<<<<<< HEAD
 		
 		<input type="text" v-model="userName"  placeholder="手机/邮箱"/><br />
 		<input type="text" v-model="userPass"  placeholder="密码"/>
@@ -12,7 +11,6 @@
 		<div class="forget">
 			<span>忘记密码</span>
 			<span @click="goReg">用户注册</span>
-=======
 		<div class="phone">
 			<i class="fa fa-mobile" aria-hidden="true"></i>
 			<input type="text" name=""  value="" placeholder="手机号/邮箱" class="num"/>
@@ -25,7 +23,6 @@
 		<div class="forget">
 			<span>忘记密码</span>
 			<router-link to="/reg"> <span>用户注册</span></router-link> 
->>>>>>> 5da3e1f756db598afedff3a4251aa5811a923d7e
 		</div>
 		<input type="button" name="" id="" value="登录"  class="dianji"/>
 	</div>
@@ -37,7 +34,6 @@
 	components:{},
 	data(){
 		return {
-<<<<<<< HEAD
 			userName:'',
 			userPass:'',
 			user:{}
@@ -68,11 +64,6 @@
 		goReg(){
 			this.$router.push({ path: '/reg'})
 		}
-	}
-=======
-			disc:"登录"
-		}
-
 	},
 	 created:function () {
             this.$emit('public_header', false);
@@ -80,7 +71,6 @@
             this.$emit('public_radio', false);
     }
 
->>>>>>> 5da3e1f756db598afedff3a4251aa5811a923d7e
 }
 </script>
 

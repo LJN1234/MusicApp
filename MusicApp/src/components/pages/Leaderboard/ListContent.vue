@@ -22,7 +22,15 @@ import MusicList from '../../commons/MusicList'
                 tracks:''
             }
         },
+        methods:{
+        	isLook(){
+        		this.$emit('public_header', false);
+	            this.$emit('public_nav', false);
+	            this.$emit('public_radio', false);
+        	}
+        },
         created(){
+        	
             this.id = this.$route.params.id;
             // console.log(this.id);
             this.$axios.get(`/weapi//top/list?idx=${this.id}`)
@@ -36,6 +44,9 @@ import MusicList from '../../commons/MusicList'
                 // console.log(this.tracks)
 
             })
+        },
+        mounted(){
+        	this.isLook()
         }
     }
 </script>
