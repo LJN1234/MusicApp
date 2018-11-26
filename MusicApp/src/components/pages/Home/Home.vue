@@ -21,7 +21,12 @@ import MV from './MV'//引入组件
 
 export default{
 	name:'Home',
-	components:{Header,Nav,Banner,MV,Song,Sole}
+	components:{Header,Nav,Banner,MV,Song,Sole},
+	created:function () {
+            this.$emit('public_header', true);
+            this.$emit('public_nav', true);
+            this.$emit('public_audio', true);
+    }
 }
 </script>
 
