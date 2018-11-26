@@ -12,20 +12,25 @@
 			<span>忘记密码</span>
 			<span>用户注册</span>
 		</div>
-		<input type="button" name="" id="" value="登录"  class="dianji"/>
+		<input type="button" @click="login" value="登录"  class="dianji"/>
 	</div>
 </template>
 
 <script>
 	export default{
-	name:'BottomBtn2',
+	name:'Login',
 	components:{},
 //	props:'',
 	data(){
 		return {
-			disc:"登录"
+			
 		}
 
+	},
+	methods:{
+		login(){
+			window.localStorage.setItem('login',true)
+		}
 	}
 }
 </script>

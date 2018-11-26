@@ -4,11 +4,14 @@
 			<transition enter-active-class='animated slideInLeft' leave-active-class='animated slideOutLeft'>
 				<div class="con" v-show="show">
 					<div class="myInfo">
-						<i class="fa fa-user-circle-o"></i>
-						<span></span>
-						<router-link to='/reg' class="zhuce">注册</router-link>
-			
-						<router-link to='/login' class="denglu">登录</router-link>
+						<div v-if="state">
+							<i class="fa fa-user-circle-o"></i>
+							<span></span>
+						</div>
+						<div v-else>
+							<router-link to='/reg' class="zhuce">注册</router-link>
+							<router-link to='/login' class="denglu">登录</router-link>
+						</div>
 					</div>
 					<ul>
 						<li  @click='goPage(item.path)' 
@@ -17,7 +20,8 @@
 								<i class="fa fa-angle-right"></i>
 						</li>
 					</ul>
-					<button class="fa fa-sign-out">退出</button>
+					<!-- <button class="fa fa-sign-out">退出</button> -->
+					<button class="fa fa-sign-out" @click="loginOut">退出</button>
 				</div>
 			</transition>
 			<transition enter-active-class='animated fadeIn' leave-active-class='animated fadeOut'>
@@ -34,15 +38,17 @@
 		components: {},
 		computed:{
 			show(){
-				return this.$store.state.isShow
+				return this.$store.state.isShowAside
 			}
 		},
 		data() {
 			return {
+				login:'',
+				state:'',
 				navList:[
 						{title:'首页',path:'/home',name:'Home'},
 						{title:'我的收藏',path:'/recommend',name:'Recommend'},
-						{title:'喜欢',path:'/singer',name:'Singer'},
+						{title:'我喜欢',path:'/singer',name:'Singer'},
 						{title:'我的',path:'/leaderboard',name:'Leaderboard'},
 						{title:'设置',path:'/mine',name:'Mine'}]
 						
@@ -50,9 +56,23 @@
 		},
 		methods:{
 			goPage(path){
-				this.$store.commit('chageShow',false)
-				  this.$router.push({ path: `${path}`, params: { userId: 123 }})
-
+				this.$store.commit('chageShowAside',false)
+				this.$router.push({ path: path})
+			},
+			loginOut(){
+				this.$store.commit('chageLogin',false)
+				this.$router.replace('/login')
+			}
+		},
+		created(){
+			if (this.$store.state.login) {
+				console.log(this.$store.state.login)
+				this.login=1
+			}
+			if(this.login=1){
+				this.state=true
+			}else{
+				this.state=false
 			}
 		}
 	}

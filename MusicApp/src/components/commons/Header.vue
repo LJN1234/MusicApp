@@ -27,8 +27,8 @@ import  Aside from './Aside.vue'
 		methods:{
 			isShow(){
 //				this.show=!this.show;
-				let show = !this.$store.state.isShow;
-				this.$store.commit('chageShow',show)
+				let show = !this.$store.state.isShowAside;
+				this.$store.commit('chageShowAside',show)
 				
 			},
 			closeAside(){

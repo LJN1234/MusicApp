@@ -1,8 +1,8 @@
 <template>
 	<div id="nav">
 		<ul>
-			<li v-for="(item,index) in titles" :key="index" @click="chageTitle(item.name)" :class="title===item.name?'hl':''">
-				<router-link :to="{path:item.path}" >{{item.title}}</router-link>
+			<li v-for="(item,index) in titles" :key="index" @click="chagePage(item.path)" :class="title===item.name?'hl':''">
+				<router-link :to="{path:item.path}">{{item.title}}</router-link>
 			</li>
 		</ul>
 	</div>
@@ -16,14 +16,22 @@
 				titles:[{title:'首页',path:'/home',name:'Home'},
 						{title:'歌手',path:'/singer',name:'Singer'},
 						{title:'榜单',path:'/leaderList',name:'ListContent'},
-						{title:'搜索',path:'/search',name:'Search'}],
-				title:'首页',
+						{title:'搜索',path:'/search',name:'Search'}]
 			}
 		},
 		methods:{
-			chageTitle(item){
-				this.title=item
+			chagePage(path){
+				var url=location.href; //取得整个地址栏
+				var hash=url.split("#")[1]
+				// console.log(hash)
+				if(path===hash){
+					this.$store.commit('chageShowAside',false)
+				this.$router.push({ path: path})
+				}	
 			}
+		},
+		mounted(){
+			
 		}
 	}
 </script>
@@ -52,14 +60,13 @@
             	display:inline-block;
             	.h(44);
             	.lh(44);
-            }
+			}
+			.router-link-active {
+				text-decoration: none;
+				border-bottom: 2px solid #df2d2d;
+			}
             
 		}
-		.hl{
-        	a{
-        		border-bottom: 2px solid #e13228;
-        	}
-        }
  	}
  }
  

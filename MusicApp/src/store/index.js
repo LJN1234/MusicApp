@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state:{
-		isShow:false
+		isShowAside:false,
+		login:false
 	},
 	mutations:{
-		chageShow(state,val1){
-			state.isShow=val1
+		chageShowAside(state,val1){
+			state.isShowAside=val1
+		},
+		chageLogin(state,val2){
+			state.isShowAside=val2
 		}
 	}
 })

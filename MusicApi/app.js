@@ -37,9 +37,8 @@ app.use('/search', require('./router/search'))
 // 搜索 hot
 app.use('/search/hot', require('./router/search_hot'))
 
-
-// 搜索 suggest,搜索结果包含单曲,歌手,歌单,mv信息
-app.use('/search/suggest', require('./router/search_suggest'))
+// 获取播放音乐地址
+app.use('/music/url', require('./router/musicUrl'))
 
 
 
