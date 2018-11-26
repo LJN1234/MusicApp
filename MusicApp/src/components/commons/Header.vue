@@ -5,10 +5,10 @@
 				<div class='nav-icon'>
 					<i class="fa fa-bars"></i>
 				</div>
-				<div class='title'>某某音乐</div>
+				<div class='title'>某某音乐{{show}}</div>
 			</div>
 		</div>
-		<!--<Aside :show="show" @close="closeAside"></Aside>-->
+		<Aside :show="show" @close="closeAside"></Aside>
 		<Aside></Aside>
 	</div>
 </template>
@@ -21,7 +21,12 @@ import  Aside from './Aside.vue'
 		components:{Aside},
 		data(){
 			return {
-				show:false
+				// show:false
+			}
+		},
+		computed:{
+			show(){
+				return this.$store.state.isShowAside;
 			}
 		},
 		methods:{

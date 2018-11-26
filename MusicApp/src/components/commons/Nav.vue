@@ -1,7 +1,7 @@
 <template>
 	<div id="nav">
 		<ul>
-			<li v-for="(item,index) in titles" :key="index" @click="chagePage(item.path)" :class="title===item.name?'hl':''">
+			<li v-for="(item,index) in titles" :key="index" @click="chagePage(item.path)">
 				<router-link :to="{path:item.path}">{{item.title}}</router-link>
 			</li>
 		</ul>
@@ -20,14 +20,18 @@
 			}
 		},
 		methods:{
+			// chagePage(path){
+			// 	var url=location.href; //取得整个地址栏
+			// 	var hash=url.split("#")[1]
+			// 	// console.log(hash)
+			// 	if(path===hash){
+			// 		this.$store.commit('chageShowAside',false)
+			// 		this.$router.push({ path: path})
+			// 	}	
+			// }
 			chagePage(path){
-				var url=location.href; //取得整个地址栏
-				var hash=url.split("#")[1]
-				// console.log(hash)
-				if(path===hash){
-					this.$store.commit('chageShowAside',false)
-				this.$router.push({ path: path})
-				}	
+				this.$store.commit('chageShowAside',false)
+				this.$router.push({ path: path})	
 			}
 		},
 		mounted(){

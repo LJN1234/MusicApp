@@ -5,20 +5,20 @@
 		<h3>注册</h3>
 		</div>
 		<div class="text">
-			<input type="text" name=""  value="" placeholder="手机号/邮箱" class="num"/>
+			<input type="text" v-model="userName" placeholder="手机号/邮箱" class="num"/>
 			<div class="yanzhengma">
-				<input type="text" name=""  value="" placeholder="动态验证码"/>
+				<input type="text" class="code" placeholder="动态验证码"/>
 				<div> 获取验证码</div>
 			</div>
 			<div class="pass">
-			<input type="password" name="" value="" placeholder="密码"/>
+			<input type="password" v-model="userPass" placeholder="密码"/>
 			<input type="password" name="" value="" placeholder="确认密码"/>
 			</div>
 			<div class="forget">
 			<input type="checkbox" name=""  value="" /><span>我已阅读并同意</span>
-			<span class="zhanghu">已有账户</span>
+			<span class="zhanghu" @click="goLogin">已有账户,前往登陆</span>
 		</div>
-		<input type="button" name="" id="" value="登录"  class="dianji"/>
+		<input type="button" @click="saveUser" value="注册"  class="dianji"/>
 		</div>
 		</div>
 	</div>
@@ -26,14 +26,30 @@
 
 <script>
 	export default{
-	name:'BottomBtn2',
+	name:'Reg',
 	components:{},
-//	props:'',
 	data(){
 		return {
-			disc:"注册"
+			user:{
+				userName:'',
+				userPass:''
+			}
 		}
 
+	},
+	methods:{
+		goLogin(){
+			this.$router.push({ path: '/login'})
+		},
+		saveUser(){
+			this.user.userName=this.userName
+			this.user.userPass=this.userPass
+			this.user=JSON.stringify(this.user)
+			window.localStorage.setItem('user',this.user)
+		}
+	},
+	created(){
+		
 	}
 }
 </script>

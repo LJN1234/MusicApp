@@ -5,12 +5,12 @@
 				<i> 登录</i>
 			</div>
 		
-		<input type="text" name=""  value=""  placeholder="手机/邮箱"/><br />
-		<input type="text" name=""  value=""  placeholder="密码"/>
+		<input type="text" v-model="userName"  placeholder="手机/邮箱"/><br />
+		<input type="text" v-model="userPass"  placeholder="密码"/>
 		</div>
 		<div class="forget">
 			<span>忘记密码</span>
-			<span>用户注册</span>
+			<span @click="goReg">用户注册</span>
 		</div>
 		<input type="button" @click="login" value="登录"  class="dianji"/>
 	</div>
@@ -20,16 +20,37 @@
 	export default{
 	name:'Login',
 	components:{},
-//	props:'',
 	data(){
 		return {
-			
+			userName:'',
+			userPass:'',
+			user:{}
 		}
 
 	},
 	methods:{
-		login(){
-			window.localStorage.setItem('login',true)
+		login(){	
+			this.user=JSON.parse(window.localStorage.getItem('user'))
+			console.log(this.user)
+			if(this.userName && this.userPass){
+				if(this.userName==this.user.userName ){
+					console.log(111)
+					if(this.userPass==this.user.userPass){
+						window.localStorage.setItem('login',true)
+						window.localStorage.setItem('userName',this.userName)
+						this.$router.replace('/home')
+					}else{
+						alert("密码错误")
+					}
+				}else{
+					alert("用户名错误")
+				}
+			}else{
+				alert("用户名或密码不能为空")
+			}
+		},
+		goReg(){
+			this.$router.push({ path: '/reg'})
 		}
 	}
 }

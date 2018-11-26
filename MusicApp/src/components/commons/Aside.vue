@@ -4,24 +4,25 @@
 			<transition enter-active-class='animated slideInLeft' leave-active-class='animated slideOutLeft'>
 				<div class="con" v-show="show">
 					<div class="myInfo">
-						<div v-if="state">
+						<div v-if="login=='true'" class="isTrue">
 							<i class="fa fa-user-circle-o"></i>
-							<span></span>
+							<span class="userName">{{userName}}</span>
 						</div>
-						<div v-else>
-							<router-link to='/reg' class="zhuce">注册</router-link>
-							<router-link to='/login' class="denglu">登录</router-link>
+						<div v-else @click="closeAside" class="isFalse">
+							<p>
+								<a class="zhuce" @click="goReg">注册</a>
+								<a  @click="goLogin" class="denglu">登录</a>
+							</p>
 						</div>
 					</div>
-					<ul>
+					<ul class="navCon">
 						<li  @click='goPage(item.path)' 
 					       	 v-for='(item,index) in navList' :key='index'>
 	                            {{item.title}}
 								<i class="fa fa-angle-right"></i>
 						</li>
 					</ul>
-					<!-- <button class="fa fa-sign-out">退出</button> -->
-					<button class="fa fa-sign-out" @click="loginOut">退出</button>
+					<button  v-if="login=='true'" class="fa fa-sign-out" @click="loginOut">退出</button>
 				</div>
 			</transition>
 			<transition enter-active-class='animated fadeIn' leave-active-class='animated fadeOut'>
@@ -44,7 +45,7 @@
 		data() {
 			return {
 				login:'',
-				state:'',
+				userName:'',
 				navList:[
 						{title:'首页',path:'/home',name:'Home'},
 						{title:'我的收藏',path:'/recommend',name:'Recommend'},
@@ -55,25 +56,37 @@
 			}
 		},
 		methods:{
+			goReg(){
+				this.$router.push({ path: '/reg'})
+			},
+			goLogin(){
+				this.$router.push({ path: '/login'})
+			},
 			goPage(path){
 				this.$store.commit('chageShowAside',false)
 				this.$router.push({ path: path})
 			},
+			isLogin(){
+				if (this.$store.state.login) {
+					console.log(this.$store.state.login)
+					this.login='true'
+					this.userName=window.localStorage.getItem('userName')
+				}
+			},
 			loginOut(){
-				this.$store.commit('chageLogin',false)
-				this.$router.replace('/login')
+				var res = confirm("您确定要退出吗？")
+				if(res){
+					window.localStorage.setItem('login',false)
+					window.localStorage.removeItem('userName')
+					this.$router.replace('/login')
+				}
+			},
+			closeAside(){
+				this.$store.commit('chageShowAside',false)
 			}
 		},
 		created(){
-			if (this.$store.state.login) {
-				console.log(this.$store.state.login)
-				this.login=1
-			}
-			if(this.login=1){
-				this.state=true
-			}else{
-				this.state=false
-			}
+			this.isLogin()
 		}
 	}
 </script>
@@ -93,56 +106,63 @@
 				z-index:9999;
 				.myInfo{
 					display:flex;
-				.w(265);
-				.h(50);
-				color:#000;
-				.fs(20);
-				.pd(0,0,0,20);
-				i{
-					.fs(30);
-					.mg(10,0,0,0);
-					color:blue;
+					.w(265);
+					.h(55);
+					color:#000;
+					.fs(20);
+					.pd(0,0,0,30);
+					.isTrue{
+						i{
+							.fs(30);
+							.mg(10,0,0,0);
+							color:blue;
+						}
+						span{
+							.pd(0,0,0,20);
+						}
+					}
+					.isFalse{
+						.w(375);
+						.h(35);
+						.lh(35);
+						.mg(10,0,10,0);
+						p{
+							.w(200);
+							.h(35);
+							.lh(35);
+							display: flex;
+							justify-content: space-around;
+							a{
+								display: block;
+								.w(90);
+								.h(35);
+								.lh(35);
+								text-align:center;
+								background:#EEE;
+							}
+						}
+					}
+					
 				}
-				span{
-					.pd(0,0,0,20);
+				.navCon{
+					li{
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						box-sizing: border-box;
+						.pd(0,20,0,30);
+						.fs(14);
+						.h(50);
+						border-bottom: 1px dotted #333;
+					}
 				}
-				.zhuce{
-				.h(34);
-				.w(73);
-				text-align:center;
-				.lh(34);
-				background:#EEE;
-				.mg(10,10,0,20);
+				button{
+					.fs(20);
+					background: #fff;
+					position: fixed;
+					.b(10);
+					.r(120);
 				}
-				.denglu{
-					.h(34);
-					.w(73);
-					text-align:center;
-					.lh(34);
-					background:#EEE;
-					.mg(10,20,0,10);
-				}
-			}
-			ul{
-				.pd(20,0,0,0);
-		 		li{
-		 			display: flex;
-		 			justify-content: space-between;
-		 			align-items: center;
-		 			box-sizing: border-box;
-		 			.pd(0,20,0,30);
-		 			.fs(14);
-		 			.h(50);
-		 			border-bottom: 1px dotted #333;
-		 		}
-		 	}
-		 	button{
-		 		.fs(20);
-		 		background: #fff;
-		 		position: fixed;
-		 		.b(10);
-		 		.r(120);
-		 	}
 			}
 			.mask{
 				z-index:-2000;

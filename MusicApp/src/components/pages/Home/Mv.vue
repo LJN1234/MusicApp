@@ -88,17 +88,29 @@
 						}
 					}
 					.Info{
-						.mg(5, 20, 0, 20);
+						.w(365);
+						.h(50);
+						.mg(5, 5, 0, 5);
+						display: flex;
+						justify-content: space-between;
 						h2{
+							.w(230);
+							.h(50);
 							.fs(16);
 							font-weight: 400;
 							float:left;
 							text-align: left;
+							overflow: hidden;
+							text-overflow: ellipsis;
 						}
 						span{
+							.w(120);
 							.fs(14);
+							text-align: right;
 							float:right;
 							color:#999;
+							overflow: hidden;
+							text-overflow: ellipsis;
 						}	
 					}
 				}

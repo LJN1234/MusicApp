@@ -51,7 +51,6 @@
                 img{
                     .w(170);
                     .h(170);
-                    border: 1px solid red;
                 }
                 p{
                     .w(100);
@@ -59,7 +58,6 @@
                     position:absolute;
                     .t(3);
                     .r(0);
-                    border: 1px solid red;
                     i{
                         position:absolute;
                         .t(0);
@@ -77,14 +75,12 @@
             .list-info{
                 flex:1;
                 .fs(16);
-                border: 1px solid red;
             }
         }
         .list-msg{
             .w(375);
             .h(60);
             display:flex;
-            border: 1px solid red;
             div{
                 flex:1;
                 display:flex;

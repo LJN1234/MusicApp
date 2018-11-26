@@ -31,9 +31,9 @@ import MusicList from '../../commons/MusicList'
                 this.title=res.result.name
                 // console.log(this.title)
                 this.result=res.result
-                console.log(this.result)
+                // console.log(this.result)
                 this.tracks=res.result.tracks
-                console.log(this.tracks)
+                // console.log(this.tracks)
 
             })
         }
