@@ -3,15 +3,18 @@
 
   <el-form :model="ReginForm" ref="ReginForm" :rules="rule" class="regform" label-width="0">
 		<h3 class="login-text">注册</h3>
-		 <el-form-item prop="tel">
+		 <el-form-item prop="tel" class="phone">
+		 	<i class="fa fa-mobile"></i>
 		<el-input  type="text" v-model.number="ReginForm.tel" placeholder="手机号码"></el-input>
 		</el-form-item>
 		
-		<el-form-item prop="password">
+		<el-form-item prop="password" class="pass">
+			<!--<i class="fa fa-lock" aria-hidden="true"></i>-->
 		<el-input  type="password" v-model="ReginForm.password" placeholder="密码"></el-input>
 		</el-form-item>
 		
 		<el-form-item prop="againpassword">
+			<!--<i class="fa fa-lock" aria-hidden="true"></i>-->
 		<el-input  type="password" v-model="ReginForm.againpassword" placeholder="密码"></el-input>
 		</el-form-item>
 		
@@ -27,8 +30,7 @@
 	
 	   <el-form-item >
 			<el-button  type="success"  class="submitBtn"  round  @click.native.prevent="submit" :loading="logining">注册</el-button>
-			<hr>
-			<p>已经有账号，马上去<span class="to" @click="tologin">登录</span></p>
+		
 
   		</el-form-item>
 
@@ -123,6 +125,108 @@
 
  },
 	methods:{
+		 getAuthCode:function () {
+
+      const verification =this.ReginForm.tel;
+
+       const url = " "
+
+       console.log("url",url);
+
+        this.$http.get(url).then(function (response) {
+
+         console.log("请求成功",response)
+
+         }, function (error) {
+
+         console.log("请求失败",error);
+
+        })
+
+      this.sendAuthCode = false;
+
+     //设置倒计时秒
+
+      this.auth_time = 10;
+
+      var auth_timetimer = setInterval(()=>{
+
+        this.auth_time--;
+
+        if(this.auth_time<=0){
+
+          this.sendAuthCode = true;
+
+          clearInterval(auth_timetimer);
+
+        }
+
+      }, 1000);
+
+    },
+
+  // 封装注册发送请求方法
+
+   thisAjax(){
+
+   const passwordData=this.ReginForm.password;
+
+   const phoneData =this.ReginForm.tel;
+
+   const mCodeData=this.verification;
+
+  //  手机注册
+
+//emulateJSON:true设置后post可跨域
+
+  const url = " 填接口"
+
+      this.$http.post(url,{填传入的参数},{emulateJSON:true}).then(function (response) 
+
+ {
+
+     //登录后跳转的页面
+
+        this.$router.push('/');
+
+      }, function (error) {
+
+        alert("请求失败",error);
+
+      })
+
+  },
+
+  // ...
+
+  submit () {
+
+   this.$refs.ReginForm.validate(valid => {
+
+    if (valid) {
+
+     this.logining = true
+
+      this. thisAjax();
+
+     console.log('开始写入后台数据！')
+
+    } else {
+
+     console.log('submit err')
+
+    }
+
+   })
+
+  },
+
+  reset () {
+
+   this.$refs.ReginForm.resetFields()
+
+  },
+
 		goLogin(){
 			this.$router.push({ path: '/login'})
 		},
@@ -144,12 +248,22 @@
 <style lang="less" scoped>
 @import '../../../styles/main.less';
 .regform{
-	.pd(0,0,0,0);
+	/*.pd(0,0,0,30);*/
 	/*background-image:url('../../../../static/images/tiankong.jpg');*/
 	.login-text{
 		.mg(0,0,40,140);
 		.fs(22);
 	}
+	.phone{
+		position: relative;
+		i{
+			position:absolute;
+			.l(5);
+			.t(5);
+			.fs(22);
+		}
+	}
+
 	.auth_input{
 		.w(180);
 		.h(38);
