@@ -129,7 +129,8 @@
 						.lh(40);
 						text-align: center;
 						flex:1;
-						.fs(20);
+						.fs(18);
+            color:#999;
 					}
 				}
 			}
