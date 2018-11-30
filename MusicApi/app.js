@@ -31,6 +31,9 @@ app.use('/top/list', require('./router/top_list'))
 //独家放送
 app.use("/personalized/privatecontent", require("./router/personalized_privatecontent"))
 
+// 获取歌手单曲
+app.use('/artists', require('./router/artists'))
+
 // 搜索
 app.use('/search', require('./router/search'))
 

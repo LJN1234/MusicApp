@@ -1,8 +1,8 @@
 <template>
-	<div id="listTitle">
+	<div id="listTitle" :style="{background:title.bg}">
 		<div class="titleCon">
-			<i class="fa fa-hand-o-left"  @click="back"></i>
-			<h3>{{title}}</h3>
+			<i class="fa fa-chevron-left"  @click="back"></i>
+			<h3>{{title.title}}</h3>
 		</div>
 	</div>
 </template>
@@ -12,12 +12,12 @@
 		name:'LisTitle',
 		props:{
 			title: {
-				type: String
+				type: Object
 			}
 		},
 		methods: {
 			back () {
-				this.$router.back(-1)
+				this.$router.history.go(this.title.num)
 			}
 		}
 	}
@@ -30,7 +30,7 @@
 		.w(375);
 		.h(54);
 		.lh(54);
-		background: rgb(13, 148, 125);
+		color:#fff;
 		.titleCon{
 			.w(355);
 			.h(54);
@@ -41,13 +41,13 @@
 				.w(30);
 				.h(30);
 				.lh(54);
-				.fs(30);
+				.fs(20);
 			}
 			h3{
 				display: inline-block;
 				flex:1;
 				.fs(18);
-				.mg(0,0,0,20);
+				.mg(0,0,0,10);
 			}
 		}
 	}

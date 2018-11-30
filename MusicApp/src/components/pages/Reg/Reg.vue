@@ -239,8 +239,7 @@
 	},
 	 created:function () {
             this.$emit('public_header', false);
-             this.$emit('public_nav', false);
-              this.$emit('public_radio', false);
+            this.$emit('public_nav', false);
     }
 }
 </script>

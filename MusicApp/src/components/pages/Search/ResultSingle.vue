@@ -1,29 +1,14 @@
 <template>
 	<div id="resultSingle">
-		<div class="con-list">
-			<ul>
-				<li v-for="(item,index) in singList" :key="index">
-					<div class="add fl">
-						<span>{{index+1}}</span>
-					</div>
-					<div class="Info fl">
-						<p class="name">{{item.name}}</p>
-						<p class="singer">{{item.artists[0].name}}</p>
-					</div>
-					<div class="btns">
-						<i class="fa fa-plus"></i>
-						<i class="fa fa-play"></i>
-					</div>
-				</li>
-			</ul>
-			<button>更多</button>
-		</div>
+		<MusicList :tracks="singList"></MusicList>
 	</div>
 </template>
 
 <script>
+import MusicList from '../../commons/MusicList'
 	export default {
 		name: 'resultSingle',
+		components:{MusicList},
 		data() {
 			return {
 				singList: []
@@ -39,7 +24,6 @@
 	    watch: {
 	      query () {
 	        this.singList = []
-	        this.fetchData()
 	      }
 	    },
 	    methods: {
@@ -48,8 +32,8 @@
 	        console.log(this.$route.query.val)
 	        this.$axios.get(`/weapi/search?keywords=${this.$route.query.val}&type=1&limit=15&offset=${offset}`)
 		      .then((res) => {
-//		      	console.log(res.result.songs)
-		        // this.songs = res.result.songs
+		      	console.log(res.result.songs)
+		        this.songs = res.result.songs
 		        for (let song of res.result.songs) {
 		          this.singList.push(song)
 		        }
@@ -65,7 +49,7 @@
 <style lang="less" scoped>
 	@import '../../../styles/main.less';
 	#resultSingle {
-		.mg(200,0,0,0);
+		// .mg(200,0,0,0);
 		.con-list {
 			.title{
 				display:flex;

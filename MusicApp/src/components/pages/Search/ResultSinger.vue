@@ -1,6 +1,6 @@
 <template>
 	<div id="resultSinger">
-		<div class="con-list" v-for="item in singer.artists">
+		<div class="con-list" v-for="(item,index) in singer.artists" :key="index">
 			<img :src="item.img1v1Url"/>
 			<p>{{item.name}}</p>
 		</div>
@@ -45,7 +45,7 @@
 	@import '../../../styles/main.less';
 	
 	#resultSinger{
-		.mg(200,0,0,0);
+		// .mg(54,0,0,0);
 		.con-list{
 			.w(353);
 			.h(100);

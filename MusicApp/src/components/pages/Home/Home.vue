@@ -1,8 +1,6 @@
 <template>
 	
 	<div id="home">
-		<Header></Header>
-   		 <Nav></Nav>
 		<Banner></Banner>
 		<Song></Song>
 		<Sole></Sole>
@@ -12,8 +10,6 @@
 </template>
 
 <script>
-import Header from '../../commons/Header'//引入组件
-import Nav from '../../commons/Nav'//引入组件
 import Banner from '../../commons/Banner'//引入组件
 import Sole from './Sole'//引入组件
 import Song from './Song'//引入组件
@@ -21,7 +17,7 @@ import MV from './MV'//引入组件
 
 export default{
 	name:'Home',
-	components:{Header,Nav,Banner,MV,Song,Sole},
+	components:{Banner,MV,Song,Sole},
 	created:function () {
             this.$emit('public_header', true);
             this.$emit('public_nav', true);

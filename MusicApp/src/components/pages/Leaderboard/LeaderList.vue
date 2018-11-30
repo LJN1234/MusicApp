@@ -1,7 +1,5 @@
 <template>
   <div id="leaderList">
-    <Header></Header>
-   	<Nav></Nav>
     <section>
       <div v-for="(item,index) of keyValue1" class="listCon" @click="goDetails(item.key)" :key="index">
         <div class="list-img fl">
@@ -24,11 +22,9 @@
 </template>
 
 <script>
-import Header from '../../commons/Header'//引入组件
-import Nav from '../../commons/Nav'//引入组件
   export default {
     name:"LeaderList",
-  	components:{Header,Nav},
+  	components:{},
     data () {
       return {
         topMusic: [],
@@ -74,10 +70,11 @@ import Nav from '../../commons/Nav'//引入组件
       ajax (ind) {
         this.$axios.get(`/weapi/top/list?idx=${ind}`)
 	    	.then((res) => {
-	    		// console.log(res)
-          let [{name: name1, artists: ar1}, {name: name2, artists: ar2}, {name: name3, artists: ar3}] = res.result.tracks
-          this.keyValue1[ind].music = [{name: name1, artists: ar1}, {name: name2, artists: ar2}, {name: name3, artists: ar3}]
-          // console.log(this.keyValue1[ind])
+          let [{name: name1, artists: ar1}, 
+          {name: name2, artists: ar2}, 
+          {name: name3, artists: ar3}] = res.result.tracks
+          this.keyValue1[ind].music = [{name: name1, artists: ar1}, 
+          {name: name2, artists: ar2}, {name: name3, artists: ar3}]
         })
       },
       goDetails(ind){

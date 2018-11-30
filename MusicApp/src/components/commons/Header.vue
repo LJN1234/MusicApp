@@ -5,7 +5,7 @@
 				<div class='nav-icon'>
 					<i class="fa fa-bars"></i>
 				</div>
-				<div class='title'>某某音乐{{show}}</div>
+				<div class='title'>某某音乐</div>
 			</div>
 		</div>
 		<Aside :show="show" @close="closeAside"></Aside>

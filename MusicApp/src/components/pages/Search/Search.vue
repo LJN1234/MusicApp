@@ -1,7 +1,5 @@
 <template>
   <div id="search">
-		<Header></Header>
-  	<Nav></Nav>
     <div class="inputs">
       <input id="inp" class="text" v-model="query"  @keyup.enter="submit()"  autofocus="autofocus"  placeholder="搜索音乐·歌手·歌单·MV">
       <input type="button" class="sousuo" value="GO" @click="submit()" />
@@ -14,11 +12,10 @@
 </template>
 
 <script>
-import Header from '../../commons/Header'//引入组件
-import Nav from '../../commons/Nav'//引入组件
   export default {
 		name:'Search',
-		components:{Header,Nav},
+		components:{},
+		
     data () {
       return {
         query: '',
@@ -29,13 +26,13 @@ import Nav from '../../commons/Nav'//引入组件
       submit(str) {
         if (str) {
           this.query = str
-//        console.log(str)
         }
-//      console.log(this.query)
-        this.$router.replace({path: '/searchResult', query: { val: this.query }})
+     		// console.log(this.query)
+        this.$router.push({path: '/searchResult', query: { val: this.query }})
         this.query = ''
       }
-    }
+		},
+		
   }
 </script>
 
@@ -55,8 +52,6 @@ import Nav from '../../commons/Nav'//引入组件
 			    .lh(40);
 			    .fs(14);
 		      border-bottom: 1px solid #ccc;
-		      &:focus {
-		      }
 		    }
 		    .sousuo {
 		    	.w(50);

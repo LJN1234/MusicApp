@@ -68,7 +68,7 @@
 			},
 			isLogin(){
 				if (this.$store.state.login) {
-					console.log(this.$store.state.login)
+					// console.log(this.$store.state.login)
 					this.login='true'
 					this.userName=window.localStorage.getItem('userName')
 				}

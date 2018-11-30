@@ -6,21 +6,27 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state:{
 		isShowAside:false,
-		currentUser: false,
-		userName: '',
-		taken: '',
-		// login:false
-		login:window.localStorage.getItem('login')?window.localStorage.getItem('login'):false
+		login:window.localStorage.getItem('login')?window.localStorage.getItem('login'):false,
+		nowPlay:false,
+		nowSong:window.localStorage.getItem('nowSong')?window.localStorage.getItem('nowSong'):'',
+		playList:window.localStorage.getItem('songInfo')?window.localStorage.getItem('songInfo'):'',
+
 	},
 	mutations:{
-		chageShowAside(state,val1){
-			state.isShowAside=val1
+		chageShowAside(state,isShowAside){
+			state.isShowAside=isShowAside
 		},
-		chageLogin(state,val2){
-			state.login=val2
+		chageLogin(state,login){
+			state.login=login
 		},
-		chageUserName(state,val3){
-			state.userName=val3
+		changeNowPlay(state,nowPlay){
+			state.nowPlay=nowPlay
+		},
+		changeNowSong(state,nowSong){
+			state.nowSong=nowSong
+		},
+		changePlayList(state,playList){
+			state.playList=playList
 		}
 	}
 })

@@ -3,9 +3,11 @@ import Router from 'vue-router' //vue router
 
 
 import Home from '../components/pages/Home/Home' //首页
+import MvList from '../components/commons/MvList' //首页
 import Login from '../components/pages/Login/Login' //登录
 import Reg from '../components/pages/Reg/Reg' //注册
 import Singer from '../components/pages/Singer/Singer' //歌手
+import SingleList from '../components/pages/Singer/singleList' //歌手单曲
 import Search from '../components/pages/Search/Search' //搜索
 import searchResult from '../components/pages/Search/searchResult'
 import ResultSingle from '../components/pages/Search/ResultSingle'
@@ -50,6 +52,11 @@ export default new Router({
       component: Singer// 该路由所引用的组件
     },
     {
+      path: '/singleList/:id',//匹配的hash地址
+      name: 'SingleList',//路由的名字
+      component: SingleList// 该路由所引用的组件
+    },
+    {
       path: '/search',
       name: 'Search',
       component: Search
@@ -58,7 +65,12 @@ export default new Router({
 		   path: '/login',
 		   name: 'Login',
 		   component: Login
-	 },
+   },
+   {
+      path: '/mvList',
+      name: 'MvList',
+      component: MvList
+  },
 		{
 		  path: '/reg',
 		   name: 'Reg',
@@ -70,22 +82,22 @@ export default new Router({
       component: searchResult,
       children:[
       	{
-      		path: 'searchResult/resultSingle',//匹配的hash地址
+      		path: 'resultSingle',//匹配的hash地址
 		      name: 'ResultSingle',//路由的名字
 		      component: ResultSingle// 该路由所引用的组件
       	},
       	{
-      		path: 'searchResult/resultSinger',//匹配的hash地址
+      		path: 'resultSinger',//匹配的hash地址
 		      name: 'ResultSinger',//路由的名字
 		      component: ResultSinger// 该路由所引用的组件
       	},
       	{
-      		path: 'searchResult/resultSheet',//匹配的hash地址
+      		path: 'resultSheet',//匹配的hash地址
 		      name: 'ResultSheet',//路由的名字
 		      component: ResultSheet// 该路由所引用的组件
       	},
       	{
-      		path: 'searchResult/resultMv',//匹配的hash地址
+      		path: 'resultMv',//匹配的hash地址
 		      name: 'ResultMv',//路由的名字
 		      component: ResultMv// 该路由所引用的组件
       	}

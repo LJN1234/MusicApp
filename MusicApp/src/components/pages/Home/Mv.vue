@@ -3,7 +3,7 @@
 		<div class="con-list">
 			<div class="title">
 				<h2>MV推荐</h2>
-				<!--<span>更多</span>-->
+				<span @click="toMore">更多</span>
 			</div>
 			<ul>
 				<li v-for="(item,index) in mvList" :key="index">
@@ -16,7 +16,6 @@
 					</div>
 				</li>
 			</ul>
-			<!--<button @click="getList(limit)">点击加载更多资源</button>-->
 		</div>
 	</div>
 </template>
@@ -30,24 +29,22 @@
 			}
 		},
 		methods:{
-			getList(limit){
-				const offset = this.mvList.length
-				this.limit+=5	
-				this.$axios.get(`/weapi/mv/first?limit=${limit}&offset=${offset}`)
+			getList(){
+				const offset = this.mvList.length	
+				this.$axios.get(`/weapi/mv/first?limit=5&offset=${offset}`)
 				.then((res)=>{
-					console.log(res)
-//					this.mv=res.data
-					for (let mv of res.data) {
-			            this.mvList.push(mv)
-			          }
+					this.mvList=res.data
 				})
 				.catch((err)=>{
 					console.log(err)
 				})
+			},
+			toMore(){
+				this.$router.push({path:'/mvList'})
 			}
 		},
 		created() {
-			this.getList(5)
+			this.getList()
 		}
 	}
 </script>

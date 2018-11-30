@@ -1,6 +1,7 @@
 <template>
-  <div id="resultMv">
-    <div v-for="(item,index) in mvs" class="mvList" :key="index">
+  <div id="mvList">
+    <listTitle :title="title"></listTitle>
+    <div v-for="(item,index) in mvLists" class="mvList-con" :key="index">
       <div class="mvImg">
         <img :src="item.cover">
         <p class="mvTime">{{Math.floor(item.duration*0.001/60).toString().padStart(2, '0')}}:{{(item.duration*0.001%60).toString().padStart(2, '0')}}</p>
@@ -14,61 +15,56 @@
 </template>
 
 <script>
+import listTitle from './listTitle'
 
   export default {
-  	name:"ResultMv",
+    name:"MvList",
+    components:{listTitle},
     data () {
       return {
-        mvs: []
+        mvLists: [],
+        title:{
+          title:'Mv推荐',
+          num:-1,
+          bg:'rgb(13, 148, 125)'
+        }
       }
     },
     mounted () {
       this.getMv()
     },
-    // 计算当前搜索的值
-    computed: {
-      query () {
-        return this.$route.query.val
-      }
-    },
-    // query变化重新搜索
-    watch: {
-      query () {
-        this.mvs = []
-        this.getMv()
-      }
-    },
     methods: {
       getMv () {
-        const offset = this.mvs.length
-        this.$axios.get(`/weapi/search?keywords=${this.$route.query.val}&type=1004&limit=15&offset=${offset}`)
-	        .then((res) => {
-	        	console.log(res.result)
-	        	for (let mv of res.result.mvs) {
-	          		this.mvs.push(mv)
-	        	}
-	      })
+        // const offset = this.mvs.length
+        this.$axios.get(`/weapi/mv/first?limit=100&offset=100`)
+        .then((res)=>{
+            this.mvLists=res.data
+        })
 	    }
+    },
+    created:function () {
+      this.$emit('public_header', false);
+      this.$emit('public_nav', false);
     }
   }
 </script>
 
 <style lang="less" scoped>
-	@import '../../../styles/main.less';
+	@import '../../styles/main.less';
 	
-#resultMv{
-  	// .mg(54,0,80,0);
-    .mvList {
-    	.w(355);
+#mvList{
+    .mvList-con {
+    	.w(375);
     	.h(250);
-    	.mg(0,10,10,10);
+    	.mg(0,0,10,0);
 	    margin-bottom: 0.1rem;
 	    .mvImg {
-	    	.w(355);
+	    	.w(375);
     		.h(200);
         position: relative;
         img {
-            width: 100%;
+          width: 100%;
+          height:100%;
         }
         .mvTime {
 	        position: absolute;
@@ -80,12 +76,16 @@
 	    }
         .mvMsg {
         	.w(355);
-    			.h(50);
+          .h(50);
+          .pd(5,0,0,10);
 		    h3 {
-		      .fs(16);
+          .fs(16);
+          .lh(20);
 		    }
 		    h4 {
-		    	.fs(14);
+          .fs(12);
+          .lh(20);
+          color: #999;
 		    }
 	    }
     }

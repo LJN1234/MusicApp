@@ -4,10 +4,8 @@
 			<p>热门歌手</p>
 		</div>
 		<ul>
-			<li v-for="(item,index) in singers" :key="index">
-
+			<li v-for="(item,index) in singers" :key="index" @click="goToList(item.id)">
 				<img :src="item.picUrl" />
-
 				<p>{{item.name}}</p>
 				<i class="fa fa-heart-o"></i>
 			</li>
@@ -28,15 +26,16 @@
 		methods: {
 			getList() {
 				this.$axios.get(`/weapi/top/artists?offset=20&total=false&limit=20`)
-					.then((res) => {
-						//					console.log(res.artists)
-						this.singers = res.artists
-						//					console.log(res.artists)
-
-					})
-					.catch((err) => {
-						console.log(err)
-					})
+				.then((res) => {
+					this.singers = res.artists
+					console.log(this.singers)
+				})
+				.catch((err) => {
+					console.log(err)
+				})
+			},
+			goToList(id){
+				this.$router.push({path: `/singleList/${id}`})
 			}
 		},
 		created() {

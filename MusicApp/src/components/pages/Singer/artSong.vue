@@ -1,5 +1,5 @@
 <template>
-	<div id="musicList">
+	<div id="artSong">
 		<div class="con-list">
 			<div class="playAll">
 				<i class="fa fa-play-circle-o"></i>
@@ -12,7 +12,7 @@
 					</div>
 					<div class="Info fl">
 						<p class="name">{{item.name}}</p>
-						<!-- <p class="singer">{{item.artists[0].name}}</p> -->
+						<p class="singer">{{item.ar[0].name}}</p>
 					</div>
 					<div class="btns">
 						<i class="fa fa-plus" @click="addMusic(item.id,item.name,item.artists[0].name,item.album.blurPicUrl)"></i>
@@ -99,7 +99,7 @@ import Footer from './Footer';
 
 <style lang="less" scoped>
 	@import '../../styles/main.less';
-	#musicList {
+	#artSong {
 		.con-list {
 			.title{
 				display:flex;

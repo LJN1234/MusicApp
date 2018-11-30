@@ -1,6 +1,6 @@
 <template>
 	<div id="resultSheet">
-		<div class="con-list" v-for="item in playlists">
+		<div class="con-list" v-for="(item,index) in playlists" :key="index">
 			<img :src="item.coverImgUrl"/>
 			<div class="info">
 				<h3>{{item.name}}</h3>
@@ -54,7 +54,7 @@
 	@import '../../../styles/main.less';
 	
 	#resultSheet{
-		.mg(200,0,0,0);
+		// .mg(54,0,0,0);
 		.con-list{
 			.w(353);
 			.h(100);

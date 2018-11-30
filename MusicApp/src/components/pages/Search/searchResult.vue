@@ -1,5 +1,6 @@
 <template>
   <div id="searchResult">
+		<listTitle :title="title"></listTitle>
     <div class="con-top">
     	<div class="inputs">
 	      <input id="inp" class="text" v-model="val"  @keyup.enter="submit()"  autofocus="autofocus"  placeholder="搜索音乐·歌手·歌单·MV">
@@ -17,26 +18,38 @@
 </template>
 
 <script>
-import ResultSingle from './ResultSingle'
-
+import listTitle from '../../commons/listTitle'
   export default {
-  	name:'SearchResult',
-  	components:{ResultSingle},
+		name:'SearchResult',
+		components:{listTitle},
     data () {
       return {
-        val: ''
+				val: '',
+				title:{
+					title:'Mv推荐',
+					num:-2,
+					bg:'rgb(13, 148, 125)'
+				},
       }
     },
     methods: {
       submit () {
-//      console.log('submit')
+				console.log(submit)
         this.$router.replace({path: '/searchResult/resultSingle', query: { val: this.val }})
       }
     },
     mounted () {
       this.val = this.$route.query.val
       this.$router.push({path: '/searchResult/resultSingle', query: { val: this.$route.query.val }})
-    }
+		},
+		 created:function () {
+			this.$emit('public_header', false);
+			this.$emit('public_nav', false);
+		},
+		destroyed(){
+			this.$emit('public_header', true);
+			this.$emit('public_nav', true);
+		}
   }
 </script>
 
@@ -46,10 +59,7 @@ import ResultSingle from './ResultSingle'
 #searchResult{
 	.con-top{
 		.w(375);
-	  .h(100);
-	  position:fixed;
-		.t(100);
-		.l(0);
+	  .h(100); 
 		background:#f8f8f8;
 	  z-index:9999;
 		.inputs {
@@ -74,9 +84,7 @@ import ResultSingle from './ResultSingle'
 		  }
 		}
 		.result-type {
-			position:fixed;
-			.t(160);
-			.l(0);
+			.mg(10,0,0,0);
 	    display: flex;
 	    .w(375);
 	    .h(30);
